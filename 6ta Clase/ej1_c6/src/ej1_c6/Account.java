@@ -11,7 +11,7 @@ public class Account {
 		return balance;
 	}
 
-	public synchronized void addAmount(double amount) {
+	public synchronized void addAmount(double amount) {   //este metodo lo utiliza solo Company
 	//public  void addAmount(double amount) {	
 		double tmp=balance;
 		try {
@@ -23,7 +23,7 @@ public class Account {
 		balance=tmp;
 	}
 
-	public synchronized void subtractAmount(double amount) {
+	public synchronized void subtractAmount(double amount) {   //este metodo lo utiliza solo Bank
 	//public  void subtractAmount(double amount) {
 		double tmp=balance;
 		try {
