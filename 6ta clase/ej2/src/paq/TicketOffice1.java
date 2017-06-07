@@ -1,8 +1,6 @@
 package paq;
 
-/**
- * Created by iv on 18/04/17.
- */
+
 public class TicketOffice1 implements Runnable {
 
     private Cinema cinema;
@@ -11,9 +9,7 @@ public class TicketOffice1 implements Runnable {
         this.cinema = cinema;
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Runnable#run()
-     */
+   
     @Override
     public void run() {
         this.cinema.sellTickets1(3);

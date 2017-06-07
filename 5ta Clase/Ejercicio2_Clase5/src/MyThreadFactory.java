@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MyThreadFactory {
 	
-	//Atributos necesario para la factory
+	//Atributos necesarios para la factory
 	private int counter;
 	private String name;
 	private List<String> stats;
