@@ -1,15 +1,9 @@
-/**
- * 
- */
-package ro.tatacalu.java7concurrency.ch04.recipe01;
+
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
-/**
- * @author tatacalu
- * 
- */
+
 public class Server {
     private ThreadPoolExecutor executor;
 
@@ -18,7 +12,8 @@ public class Server {
     }
 
     public void executeTask(Task task) {
-        System.out.printf("Server: A new task has arrived\n");
+        
+    	System.out.printf("Server: A new task has arrived\n");
         
         this.executor.execute(task);
         
@@ -28,6 +23,7 @@ public class Server {
     }
 
     public void endServer() {
+        //this.executor.shutdownNow();
         this.executor.shutdown();
     }
 }

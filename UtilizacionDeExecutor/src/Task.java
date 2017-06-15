@@ -1,18 +1,11 @@
-/**
- * 
- */
-package ro.tatacalu.java7concurrency.ch04.recipe01;
+
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-/**
- * @author tatacalu
- * 
- */
 public class Task implements Runnable {
 
-    private Date   initDate;
+    private Date initDate;
     private String name;
 
     public Task(String name) {
@@ -20,12 +13,7 @@ public class Task implements Runnable {
         this.name = name;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Runnable#run()
-     */
-    @Override
+  
     public void run() {
         System.out.printf("%s: Task %s: Created on: %s\n", Thread.currentThread().getName(), name, initDate);
         System.out.printf("%s: Task %s: Started on: %s\n", Thread.currentThread().getName(), name, new Date());
