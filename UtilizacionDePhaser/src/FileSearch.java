@@ -8,39 +8,43 @@ import java.util.concurrent.TimeUnit;
 
 public class FileSearch implements Runnable {
 
-    private String       initPath;
-
-    /**
-     * The extension searched for.
-     */
-    private String       end;
-
-    private Phaser       phaser;
-
+    private String initPath;
+    private String end;
+    private Phaser phaser;
     private List<String> results;
-
+    
     public FileSearch(String initPath, String end, Phaser phaser) {
-        this.initPath = initPath;
-        this.end = end;
-        this.phaser = phaser;
+    this.initPath = initPath;
+    this.end = end;
+    this.phaser = phaser;
         results = new ArrayList<>();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Runnable#run()
-     */
-    @Override
+  
     public void run() {
         // The search won't begin until all the threads have been created
         // ---------- Arrive & Await Advance ----------
         this.phaser.arriveAndAwaitAdvance();
+        
+        /*  Llega a este phaser y espera a los demás. Equivalente en efecto a awaitAdvance(arrive()). Si necesita esperar
+         *  con interrupción o tiempo de espera, puede organizar esto con una construcción análoga utilizando una de las otras 
+         *  formas del método awaitAdvance. Si en su lugar necesita cancelar su registro a su llegada,
+         *   utilice awaitAdvance (arrivalAndDeregister ()).
+
+        Es un error de uso para una parte no registrada para invocar este método. Sin embargo, este error puede resultar 
+        en un IllegalStateException sólo en alguna operación posterior en este phaser, si alguna vez.
+
+        returns:
+            El número de fase de llegada o la fase de corriente (negativa) si se termina
+        throws:
+            IllegalStateException - si no se termina y el número de partes no arribadas se convertiría en negativo
+            */
 
         System.out.printf("%s: Starting.\n", Thread.currentThread().getName());
 
         // Start processing the directory
         File file = new File(initPath);
+        
         if (file.isDirectory()) {
             this.directoryProcess(file);
         }
@@ -49,10 +53,13 @@ public class FileSearch implements Runnable {
         if (!this.checkResults()) {
             return;
         }
+       
+        
         // ---------- Arrive & Await Advance ----------
 
         this.filterResults();
         // If there are no results finish the execution of the thread
+        
         if (!this.checkResults()) {
             return;
         }
@@ -64,7 +71,9 @@ public class FileSearch implements Runnable {
         phaser.arriveAndDeregister();
         System.out.printf("%s: Work completed.\n", Thread.currentThread().getName());
     }
-
+//--------------------------------------fin del metodo run()----------------------------------------------------------------------------
+    
+    
     private void directoryProcess(File file) {
         File list[] = file.listFiles();
         if (list != null) {

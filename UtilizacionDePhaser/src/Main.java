@@ -2,19 +2,14 @@
 
 import java.util.concurrent.Phaser;
 
-/**
- * @author tatacalu
- * 
- */
+
 public class Main {
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-        Phaser phaser = new Phaser(3);
 
-        FileSearch system = new FileSearch("C:\\Users\\SAMPAXX\\Desktop\\BuscarAca", "log", phaser);
+    public static void main(String[] args) {
+        
+    	Phaser phaser = new Phaser(3);
+    	FileSearch system = new FileSearch("C:\\Windows", "log", phaser);
         FileSearch apps = new FileSearch("C:\\Program Files", "log", phaser);
         FileSearch documents = new FileSearch("C:\\Documents And Settings", "log", phaser);
 
@@ -35,7 +30,7 @@ public class Main {
             e.printStackTrace();
         }
         
-        System.out.println("Terminated: "+ phaser.isTerminated());
+        System.out.println("Phaser Terminated: "+ phaser.isTerminated());
     }
 
 }
