@@ -13,7 +13,7 @@ public class Task implements Runnable {
         this.name = name;
     }
 
-  
+  //se ven los cambios?
     public void run() {
         System.out.printf("%s: Task %s: Created on: %s\n", Thread.currentThread().getName(), name, initDate);
         System.out.printf("%s: Task %s: Started on: %s\n", Thread.currentThread().getName(), name, new Date());
